@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="section no-pad-bot" id="index-banner">
+  <h4 class="header center main-text">Lista de perguntas</h4>
+  <table class="highlight">
+    <thead>
+      <tr>
+        <th width="85%">Questão</th>
+        <th width="15%" class="right-align"></th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for q in questoes %}
+      <tr>
+        <td>{{ q.pergunta }}</td>
+        <td class="row vallign right-align">
+        <div class="btn-group-h">
+          <a href="{% url 'edit' pk=q.pk %}" class="btn-flat img-btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Editar"><i class="material-icons orange-text">mode_edit</i></a>
+          <a href="{% url 'delete' pk=q.pk %}" class="btn-flat img-btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Apagar"><i class="material-icons red-text">delete</i></a>
+        </div>
+        </td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  <br>
+  <div class="row center">
+    <a href="/" id="voltar" class="btn waves-effect waves-light blue-grey">Voltar</a>
+  </div>
+  <br>
+</div>
+{% endblock %}

@@ -54,3 +54,21 @@ ul.horizontal > li {
 .main-color {
   background-color: #546e7a !important;
 }
+
+[type="radio"].with-gap:checked + label:after {
+  background-color: #546e7a !important;
+}
+
+[type="radio"].with-gap:checked + label:before,
+[type="radio"].with-gap:checked + label:after {
+  border: 2px solid #546e7a !important;
+}
+
+.img-btn {
+  padding: 0 8px;
+  background-color: transparent;
+}
+
+.img-btn:focus, .img-btn:hover {
+  background-color: transparent;
+}

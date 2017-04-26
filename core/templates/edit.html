@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="section no-pad-bot" id="index-banner">
+  <div class="container">
+    <h3 class="header center main-text">Editar pergunta</h3>
+    <div class="row center">
+    <form method="POST" class="questao-form">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <div class="row center">
+        <button type="submit" id="salvar" class="btn waves-effect waves-light green">Salvar</button>
+        <a href="/" id="voltar" class="btn waves-effect waves-light blue-grey">Voltar</a>
+      </div>
+    </form>
+    </div>
+    <br>
+  </div>
+</div>
+{% endblock %}

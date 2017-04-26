@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from core.models import *
+from .forms import *
 import random
 
 # Create your views here.
@@ -9,6 +10,38 @@ def index(request):
 
 def stop(request):
   return render(request, 'stop.html', {'parar': request.COOKIES.get('parada')})
+
+def add(request):
+  if request.method == "POST":
+    form = QuestaoForm(request.POST)
+    if form.is_valid():
+      questao = form.save(commit=False)
+      questao.save()
+      return redirect('index')
+  else:
+    form = QuestaoForm()
+  return render(request, 'add.html', {'form': form})
+
+def edit(request, pk):
+    questao = get_object_or_404(Questao, pk=pk)
+    if request.method == "POST":
+      form = QuestaoForm(request.POST, instance=questao)
+      if form.is_valid():
+        questao = form.save(commit=False)
+        questao.save()
+        return redirect('index')
+    else:
+        form = QuestaoForm(instance=questao)
+    return render(request, 'edit.html', {'form': form})
+
+def delete(request, pk):
+    questao = get_object_or_404(Questao, pk=pk)
+    questao.delete()
+    return redirect('list')
+
+def list(request):
+    questoes = Questao.objects.all()
+    return render(request, 'list.html', {'questoes': questoes})
 
 def play(request):
   questao = random.choice(Questao.objects.all())
