@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="section no-pad-bot" id="index-banner">
+  <div class="container">
+
+    <div>
+      <h4 class="header center main-text">{{ questao.pergunta }}</h4>
+      <form action="#" method="POST">
+        {% csrf_token %}
+        <p>
+          <input class="with-gap" name="resposta" type="radio" id="a" value="a" required/>
+          <label for="a" class="black-text">{{ questao.a }}</label>
+        </p>
+        <p>
+          <input class="with-gap" name="resposta" type="radio" id="b" value="b" />
+          <label for="b" class="black-text">{{ questao.b }}</label>
+        </p>
+        <p>
+          <input class="with-gap" name="resposta" type="radio" id="c" value="c" />
+          <label for="c" class="black-text">{{ questao.c }}</label>
+        </p>
+        <p>
+          <input class="with-gap" name="resposta" type="radio" id="d" value="d" />
+          <label for="d" class="black-text">{{ questao.d }}</label>
+        </p>
+        <div class="row center">
+          <button type="submit" id="continuar" class="btn-flat waves-effect waves-light blue-text text-darken-1">Continuar</button>
+          <a href="/stop" id="parar" class="btn-flat waves-effect waves-light amber-text text-darken-1">Parar</a>
+        </div>
+      </form>
+    </div>
+
+    <div class="row center">
+      <div class="col s12 m4">
+        <h5>Acertar</h5>
+        <div class="card-panel green">
+          <span class="white-text">R$ {{ valor.acertar }}</span>
+        </div>
+      </div>
+      <div class="col s12 m4">
+        <h5>Parar</h5>
+        <div class="card-panel amber">
+          <span class="white-text">R$ {{ valor.parar }}</span>
+        </div>
+      </div>
+      <div class="col s12 m4">
+        <h5>Errar</h5>
+        <div class="card-panel red">
+          <span class="white-text">R$ {{ valor.errar }}</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <br>
+</div>
+{% endblock %}
